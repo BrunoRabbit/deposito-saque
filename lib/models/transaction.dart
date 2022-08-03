@@ -4,26 +4,26 @@ import 'package:flutter/material.dart';
 
 class Transaction {
   String? name;
-  double? resgate;
-  double? deposito;
-  double? transferido;
+  double? withdraw;
+  double? deposit;
+  double? transferred;
   String? dateTime;
   IconData? icon;
 
   Transaction({
     this.name,
-    this.resgate,
-    this.deposito,
-    this.transferido,
+    this.withdraw,
+    this.deposit,
+    this.transferred,
     this.dateTime,
     this.icon,
   });
 
   Transaction copyWith({
     String? name,
-    double? resgate,
-    double? deposito,
-    double? transferido,
+    double? withdraw,
+    double? deposit,
+    double? transferred,
     String? dateTime,
     IconData? icon,
     Color? bgColor,
@@ -31,9 +31,9 @@ class Transaction {
   }) {
     return Transaction(
       name: name ?? this.name,
-      resgate: resgate ?? this.resgate,
-      deposito: deposito ?? this.deposito,
-      transferido: transferido ?? this.transferido,
+      withdraw: withdraw ?? this.withdraw,
+      deposit: deposit ?? this.deposit,
+      transferred: transferred ?? this.transferred,
       dateTime: dateTime ?? this.dateTime,
       icon: icon ?? this.icon,
     );

@@ -27,7 +27,7 @@ class TransactionController extends ChangeNotifier {
       listTransaction.add(
         transaction = transaction!.copyWith(
           name: 'Transferred',
-          transferido: currentMoney,
+          transferred: currentMoney,
           dateTime: formatter.format(dateTime),
           icon: FontAwesomeIcons.arrowRightArrowLeft,
         ),
@@ -62,7 +62,7 @@ class TransactionController extends ChangeNotifier {
       listTransaction.add(
         transaction = transaction!.copyWith(
           name: 'Withdraw',
-          resgate: currentMoney,
+          withdraw: currentMoney,
           dateTime: formatter.format(dateTime),
           icon: FontAwesomeIcons.dollarSign,
         ),
@@ -98,7 +98,7 @@ class TransactionController extends ChangeNotifier {
       listTransaction.add(
         transaction = transaction!.copyWith(
           name: 'Deposit',
-          deposito: currentMoney,
+          deposit: currentMoney,
           dateTime: formatter.format(dateTime),
           icon: FontAwesomeIcons.moneyBill1Wave,
         ),

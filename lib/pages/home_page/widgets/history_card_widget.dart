@@ -46,11 +46,12 @@ class HistoryCard extends StatelessWidget {
                           label: transaction.name!,
                         ),
                         AppCustomText(
-                          label: transaction.resgate != null
-                              ? UtilBrasilFields.obterReal(transaction.resgate!)
+                          label: transaction.withdraw != null
+                              ? UtilBrasilFields.obterReal(
+                                  transaction.withdraw!)
                               : UtilBrasilFields.obterReal(
-                                  transaction.deposito ??
-                                      transaction.transferido!),
+                                  transaction.deposit ??
+                                      transaction.transferred!),
                           color: _getMoneyColor(),
                         ),
                       ],
@@ -72,9 +73,9 @@ class HistoryCard extends StatelessWidget {
   }
 
   Color _getCardBackground() {
-    if (transaction.resgate != null) {
+    if (transaction.withdraw != null) {
       return Colors.red[100]!;
-    } else if (transaction.transferido != null) {
+    } else if (transaction.transferred != null) {
       return Colors.blue[100]!;
     } else {
       return Colors.green[100]!;
@@ -82,9 +83,9 @@ class HistoryCard extends StatelessWidget {
   }
 
   Color _getMoneyColor() {
-    if (transaction.resgate != null) {
+    if (transaction.withdraw != null) {
       return Colors.red[900]!;
-    } else if (transaction.transferido != null) {
+    } else if (transaction.transferred != null) {
       return Colors.blue[900]!;
     } else {
       return Colors.green[900]!;
@@ -92,9 +93,9 @@ class HistoryCard extends StatelessWidget {
   }
 
   Color _getBannerBackground() {
-    if (transaction.resgate != null) {
+    if (transaction.withdraw != null) {
       return Colors.redAccent;
-    } else if (transaction.transferido != null) {
+    } else if (transaction.transferred != null) {
       return Colors.blue;
     } else {
       return const Color.fromARGB(255, 4, 179, 77);
