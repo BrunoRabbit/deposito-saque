@@ -21,7 +21,7 @@ ScaffoldFeatureController<SnackBar, SnackBarClosedReason> sucessSnackBar(
           ),
           const Spacer(),
           InkWell(
-            child: const Text('Dispensar'),
+            child: const Text('Dismiss'),
             onTap: () {
               scaffoldKey.currentState!.hideCurrentSnackBar();
             },
@@ -49,7 +49,7 @@ ScaffoldFeatureController<SnackBar, SnackBarClosedReason> failedSnackBar(
           ),
           const Spacer(),
           InkWell(
-            child: const Text('Dispensar'),
+            child: const Text('Dismiss'),
             onTap: () {
               scaffoldKey.currentState!.hideCurrentSnackBar();
             },

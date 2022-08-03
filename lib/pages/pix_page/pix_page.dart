@@ -1,18 +1,18 @@
-import 'package:deposito_saque/components/card_pix.dart';
-import 'package:deposito_saque/components/form_receber.dart';
+import 'package:deposito_saque/pages/pix_page/widgets/receive_form.dart';
+import 'package:deposito_saque/views/pix_view/widgets/card_pix.dart';
 import 'package:deposito_saque/routes/app_routes.dart';
 import 'package:deposito_saque/widgets/app_custom_text.dart';
 import 'package:flutter/material.dart';
 
-class PixView extends StatefulWidget {
-  const PixView({Key? key}) : super(key: key);
+class PixPage extends StatefulWidget {
+  const PixPage({Key? key}) : super(key: key);
 
   @override
-  State<PixView> createState() => _PixViewState();
+  State<PixPage> createState() => _PixPageState();
 }
 
-class _PixViewState extends State<PixView> {
-  bool isReceberTap = false;
+class _PixPageState extends State<PixPage> {
+  bool isReceiveTap = false;
 
   @override
   Widget build(BuildContext context) {
@@ -44,28 +44,28 @@ class _PixViewState extends State<PixView> {
             children: [
               CardPix(
                 suffix: Icons.keyboard_arrow_right_rounded,
-                title: 'Pagar',
+                title: 'Pay',
                 icon: Icons.attach_money_rounded,
                 onTap: () {
-                  Navigator.of(context).pushNamed(RoutesPath.kCameraView);
+                  Navigator.of(context).pushNamed(RoutesPath.kCameraPage);
                 },
               ),
               CardPix(
-                suffix: isReceberTap
+                suffix: isReceiveTap
                     ? Icons.keyboard_arrow_down_rounded
                     : Icons.keyboard_arrow_right_rounded,
-                title: 'Receber',
+                title: 'Receive',
                 icon: Icons.qr_code,
                 onTap: () {
                   setState(() {
-                    isReceberTap = !isReceberTap;
+                    isReceiveTap = !isReceiveTap;
                   });
                 },
               ),
               const SizedBox(
                 height: 15,
               ),
-              isReceberTap ? const FormReceber() : Container(),
+              isReceiveTap ? const ReceiveForm() : Container(),
             ],
           ),
         ),

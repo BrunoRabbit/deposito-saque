@@ -19,6 +19,5 @@ class ColorsThemes {
 
   static final lightTheme = ThemeData(
     primarySwatch: _colorPrimarySwatch,
-    // primaryColor: _colorPrimarySwatch,
   );
 }

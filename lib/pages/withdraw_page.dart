@@ -6,20 +6,20 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class ResgatarView extends StatefulWidget {
-  const ResgatarView({Key? key}) : super(key: key);
+class WithdrawPage extends StatefulWidget {
+  const WithdrawPage({Key? key}) : super(key: key);
 
   @override
-  State<ResgatarView> createState() => _ResgatarViewState();
+  State<WithdrawPage> createState() => _WithdrawPageState();
 }
 
-class _ResgatarViewState extends State<ResgatarView> {
-  late TextEditingController _resgateController;
+class _WithdrawPageState extends State<WithdrawPage> {
+  late TextEditingController _withdrawController;
   late TransactionController transactionController;
 
   @override
   void initState() {
-    _resgateController = TextEditingController(
+    _withdrawController = TextEditingController(
         text: UtilBrasilFields.obterReal(
       0,
       moeda: true,
@@ -31,7 +31,7 @@ class _ResgatarViewState extends State<ResgatarView> {
 
   @override
   void dispose() {
-    _resgateController.dispose();
+    _withdrawController.dispose();
     super.dispose();
   }
 
@@ -42,7 +42,7 @@ class _ResgatarViewState extends State<ResgatarView> {
         elevation: 0,
         backgroundColor: Colors.transparent,
         title: const AppCustomText(
-          label: 'Resgatar',
+          label: 'Withdraw',
           size: 20,
           fontWeight: FontWeight.w600,
           color: Colors.black,
@@ -78,7 +78,7 @@ class _ResgatarViewState extends State<ResgatarView> {
                 child: Row(
                   children: [
                     const AppCustomText(
-                      label: 'Saldo em conta',
+                      label: 'Account balance',
                       fontWeight: FontWeight.normal,
                     ),
                     const Spacer(),
@@ -95,9 +95,45 @@ class _ResgatarViewState extends State<ResgatarView> {
           const SizedBox(
             height: 20,
           ),
-          const AppCustomText(
-            label: 'Quanto você quer retirar do banco',
-            fontWeight: FontWeight.normal,
+          RichText(
+            textAlign: TextAlign.center,
+            text: TextSpan(
+              text: 'How much ',
+              style: GoogleFonts.roboto(
+                fontSize: 26,
+                fontWeight: FontWeight.w700,
+                color: const Color(0xff0000ff).withOpacity(0.75),
+              ),
+              children: <TextSpan>[
+                TextSpan(
+                  text: 'do you want\n to ',
+                  style: GoogleFonts.roboto(
+                    fontWeight: FontWeight.normal,
+                    color: Colors.black,
+                  ),
+                ),
+                const TextSpan(
+                  text: 'withdraw',
+                ),
+                TextSpan(
+                  text: ' from the ',
+                  style: GoogleFonts.roboto(
+                    fontWeight: FontWeight.normal,
+                    color: Colors.black,
+                  ),
+                ),
+                const TextSpan(
+                  text: 'bank',
+                ),
+                TextSpan(
+                  text: '?',
+                  style: GoogleFonts.roboto(
+                    fontWeight: FontWeight.normal,
+                    color: Colors.black,
+                  ),
+                ),
+              ],
+            ),
           ),
           Center(
             child: SizedBox(
@@ -105,7 +141,7 @@ class _ResgatarViewState extends State<ResgatarView> {
               child: TextField(
                 autofocus: true,
                 textAlign: TextAlign.center,
-                controller: _resgateController,
+                controller: _withdrawController,
                 keyboardType: TextInputType.number,
                 maxLength: 13,
                 maxLengthEnforcement: MaxLengthEnforcement.enforced,
@@ -136,7 +172,7 @@ class _ResgatarViewState extends State<ResgatarView> {
             width: double.infinity,
             child: ElevatedButton(
               child: const AppCustomText(
-                label: 'Resgatar',
+                label: 'Withdraw',
                 color: Colors.white,
                 size: 18,
               ),
@@ -149,7 +185,7 @@ class _ResgatarViewState extends State<ResgatarView> {
               ),
               onPressed: () {
                 transactionController.verifyValueResgate(
-                  _resgateController.text,
+                  _withdrawController.text,
                   context,
                 );
               },

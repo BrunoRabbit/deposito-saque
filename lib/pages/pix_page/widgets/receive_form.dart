@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-class FormReceber extends StatefulWidget {
-  const FormReceber({Key? key}) : super(key: key);
+class ReceiveForm extends StatefulWidget {
+  const ReceiveForm({Key? key}) : super(key: key);
 
   @override
-  State<FormReceber> createState() => _FormReceberState();
+  State<ReceiveForm> createState() => _ReceiveFormState();
 }
 
-class _FormReceberState extends State<FormReceber> {
+class _ReceiveFormState extends State<ReceiveForm> {
   late TextEditingController _emailController;
   late TextEditingController _moneyTransferController;
   late TransactionController transactionController;
@@ -49,7 +49,7 @@ class _FormReceberState extends State<FormReceber> {
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 6),
             child: AppCustomText(
-              label: 'Email',
+              label: 'E-mail',
               fontWeight: FontWeight.normal,
             ),
           ),
@@ -62,7 +62,7 @@ class _FormReceberState extends State<FormReceber> {
               controller: _emailController,
               validator: (text) {
                 if (regexEmail.hasMatch(text!) && text.isEmpty) {
-                  return 'Email não pode ser vazio!';
+                  return 'E-mail cannot be empty!';
                 }
                 return null;
               },
@@ -74,7 +74,7 @@ class _FormReceberState extends State<FormReceber> {
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 6),
             child: AppCustomText(
-              label: 'Dinheiro a receber',
+              label: 'Money to receive',
               fontWeight: FontWeight.normal,
             ),
           ),
@@ -91,7 +91,7 @@ class _FormReceberState extends State<FormReceber> {
               controller: _moneyTransferController,
               validator: (text) {
                 if (text!.isEmpty) {
-                  return 'Dinheiro nao pode ser vazio';
+                  return 'Money cannot be empty';
                 }
                 return null;
               },
@@ -105,7 +105,7 @@ class _FormReceberState extends State<FormReceber> {
             width: double.infinity,
             child: ElevatedButton(
               child: const AppCustomText(
-                label: 'Receber dinheiro',
+                label: 'Receive money',
                 color: Colors.white,
                 size: 18,
               ),

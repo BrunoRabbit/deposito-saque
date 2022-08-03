@@ -1,21 +1,21 @@
 import 'package:brasil_fields/brasil_fields.dart';
-import 'package:deposito_saque/views/home_view/widgets/card_historico.dart';
+import 'package:deposito_saque/pages/home_page/widgets/history_card_widget.dart';
 import 'package:deposito_saque/controllers/transaction_controller.dart';
 import 'package:deposito_saque/models/transaction.dart';
 import 'package:deposito_saque/widgets/app_custom_text.dart';
-import 'package:deposito_saque/views/home_view/widgets/area_button.dart';
+import 'package:deposito_saque/pages/home_page/widgets/area_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class HomeView extends StatefulWidget {
-  const HomeView({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
-  State<HomeView> createState() => _HomeViewState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _HomeViewState extends State<HomeView> {
+class _HomePageState extends State<HomePage> {
   late TransactionController transactionController;
 
   @override
@@ -35,7 +35,7 @@ class _HomeViewState extends State<HomeView> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const AppCustomText(
-                label: 'Olá, Bruno',
+                label: 'Hi, Bruno',
                 fontWeight: FontWeight.w400,
               ),
               const SizedBox(
@@ -49,7 +49,7 @@ class _HomeViewState extends State<HomeView> {
                 height: 8,
               ),
               AppCustomText(
-                label: 'Meu saldo atual',
+                label: 'Current balance',
                 size: 16,
                 color: Theme.of(context).primaryColor,
               ),
@@ -63,7 +63,7 @@ class _HomeViewState extends State<HomeView> {
               Row(
                 children: [
                   Text(
-                    'Histórico de transações',
+                    'History transaction',
                     style: GoogleFonts.roboto(
                       fontSize: 18,
                       fontWeight: FontWeight.w500,
@@ -87,7 +87,7 @@ class _HomeViewState extends State<HomeView> {
                       child: Column(
                         children: [
                           const AppCustomText(
-                            label: 'Nenhuma transação encontrada!',
+                            label: 'No transactions found!',
                             size: 20,
                           ),
                           Icon(
@@ -109,7 +109,7 @@ class _HomeViewState extends State<HomeView> {
                           Transaction transaction = transactionController
                               .listTransaction[reverseIndex];
 
-                          return CardHistorico(
+                          return HistoryCard(
                             transaction: transaction,
                           );
                         },
@@ -125,3 +125,7 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 }
+// TODO - SEM UZAR SETSTATE WITH BLOC 
+// TODO - TIRAR GOOGLE FONTE E COLOCAR FONTE DIREITO
+// TODO - UM BrOCO PRA CADA STATE
+// TODO - FAZER EM INGLES ATÉ VARIAVEL

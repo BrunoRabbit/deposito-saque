@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 
 import 'package:deposito_saque/models/transaction.dart';
 
-class CardHistorico extends StatelessWidget {
+class HistoryCard extends StatelessWidget {
   final Transaction transaction;
 
-  const CardHistorico({
+  const HistoryCard({
     Key? key,
     required this.transaction,
   }) : super(key: key);
@@ -17,14 +17,14 @@ class CardHistorico extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 2),
       child: Card(
-        color: transaction.bgColor,
+        color: _getCardBackground(),
         child: Padding(
           padding: const EdgeInsets.all(12.0),
           child: Row(
             children: [
               CircleAvatar(
                 radius: 20,
-                backgroundColor: getBannerBackground(),
+                backgroundColor: _getBannerBackground(),
                 child: Icon(
                   transaction.icon,
                   size: 20,
@@ -51,7 +51,7 @@ class CardHistorico extends StatelessWidget {
                               : UtilBrasilFields.obterReal(
                                   transaction.deposito ??
                                       transaction.transferido!),
-                          color: transaction.moneyColor,
+                          color: _getMoneyColor(),
                         ),
                       ],
                     ),
@@ -71,7 +71,27 @@ class CardHistorico extends StatelessWidget {
     );
   }
 
-  Color getBannerBackground() {
+  Color _getCardBackground() {
+    if (transaction.resgate != null) {
+      return Colors.red[100]!;
+    } else if (transaction.transferido != null) {
+      return Colors.blue[100]!;
+    } else {
+      return Colors.green[100]!;
+    }
+  }
+
+  Color _getMoneyColor() {
+    if (transaction.resgate != null) {
+      return Colors.red[900]!;
+    } else if (transaction.transferido != null) {
+      return Colors.blue[900]!;
+    } else {
+      return Colors.green[900]!;
+    }
+  }
+
+  Color _getBannerBackground() {
     if (transaction.resgate != null) {
       return Colors.redAccent;
     } else if (transaction.transferido != null) {

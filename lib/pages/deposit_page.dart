@@ -8,14 +8,14 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class DepositView extends StatefulWidget {
-  const DepositView({Key? key}) : super(key: key);
+class DepositPage extends StatefulWidget {
+  const DepositPage({Key? key}) : super(key: key);
 
   @override
-  State<DepositView> createState() => _DepositViewState();
+  State<DepositPage> createState() => _DepositPageState();
 }
 
-class _DepositViewState extends State<DepositView> {
+class _DepositPageState extends State<DepositPage> {
   late final TextEditingController _moneyController;
   late TransactionController transactionController;
 
@@ -61,7 +61,7 @@ class _DepositViewState extends State<DepositView> {
             RichText(
               textAlign: TextAlign.center,
               text: TextSpan(
-                text: 'Quanto ',
+                text: 'How much ',
                 style: GoogleFonts.roboto(
                   fontSize: 26,
                   fontWeight: FontWeight.w700,
@@ -69,14 +69,14 @@ class _DepositViewState extends State<DepositView> {
                 ),
                 children: <TextSpan>[
                   TextSpan(
-                    text: 'você \nquer ',
+                    text: 'do \nyou want to ',
                     style: GoogleFonts.roboto(
                       fontWeight: FontWeight.normal,
                       color: Colors.black,
                     ),
                   ),
                   const TextSpan(
-                    text: 'depositar',
+                    text: 'deposit',
                   ),
                   TextSpan(
                     text: '?',
@@ -119,7 +119,7 @@ class _DepositViewState extends State<DepositView> {
             ),
             const Spacer(),
             AppCustomText(
-              label: 'Digite um valor entre R\$ 3,00 e R\$ 250.000,00',
+              label: 'Enter an amount between \nR\$ 3,00 and R\$ 250,000.00',
               color: Colors.black.withOpacity(0.7),
               size: 16,
             ),
@@ -131,7 +131,7 @@ class _DepositViewState extends State<DepositView> {
               width: double.infinity,
               child: ElevatedButton(
                 child: const AppCustomText(
-                  label: 'Depositar',
+                  label: 'Deposit',
                   color: Colors.white,
                   size: 18,
                 ),

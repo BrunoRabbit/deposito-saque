@@ -1,15 +1,15 @@
-import 'package:deposito_saque/helpers/qr_overlay.dart';
+import 'package:deposito_saque/pages/camera_page/widgets/qr_overlay_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
-class CameraView extends StatefulWidget {
-  const CameraView({Key? key}) : super(key: key);
+class CameraPage extends StatefulWidget {
+  const CameraPage({Key? key}) : super(key: key);
 
   @override
-  State<CameraView> createState() => _CameraViewState();
+  State<CameraPage> createState() => _CameraPageState();
 }
 
-class _CameraViewState extends State<CameraView> {
+class _CameraPageState extends State<CameraPage> {
   late MobileScannerController cameraController;
   @override
   void initState() {

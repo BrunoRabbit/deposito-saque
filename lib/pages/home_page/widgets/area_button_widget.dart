@@ -19,7 +19,7 @@ class AreaButton extends StatelessWidget {
               children: [
                 InkWell(
                   onTap: () {
-                    Navigator.of(context).pushNamed(RoutesPath.kPixView);
+                    Navigator.of(context).pushNamed(RoutesPath.kPixPage);
                   },
                   child: CircleAvatar(
                     radius: 25,
@@ -35,7 +35,7 @@ class AreaButton extends StatelessWidget {
                   height: 5,
                 ),
                 const AppCustomText(
-                  label: 'Área Pix',
+                  label: 'Pix',
                   size: 16,
                 ),
               ],
@@ -47,7 +47,7 @@ class AreaButton extends StatelessWidget {
               children: [
                 InkWell(
                   onTap: () {
-                    Navigator.of(context).pushNamed(RoutesPath.kDepositView);
+                    Navigator.of(context).pushNamed(RoutesPath.kDepositPage);
                   },
                   child: CircleAvatar(
                     radius: 25,
@@ -63,7 +63,7 @@ class AreaButton extends StatelessWidget {
                   height: 5,
                 ),
                 AppCustomText(
-                  label: 'Depositar',
+                  label: 'Deposit',
                   size: 16,
                   color: Colors.black.withOpacity(0.8),
                 ),
@@ -76,7 +76,7 @@ class AreaButton extends StatelessWidget {
               children: [
                 InkWell(
                   onTap: () {
-                    Navigator.of(context).pushNamed(RoutesPath.kResgatarView);
+                    Navigator.of(context).pushNamed(RoutesPath.kWithdrawPage);
                   },
                   child: CircleAvatar(
                     radius: 25,
@@ -92,7 +92,7 @@ class AreaButton extends StatelessWidget {
                   height: 5,
                 ),
                 AppCustomText(
-                  label: 'Resgatar',
+                  label: 'Withdraw',
                   size: 16,
                   color: Colors.black.withOpacity(0.8),
                 ),

@@ -26,19 +26,17 @@ class TransactionController extends ChangeNotifier {
       value += currentMoney;
       listTransaction.add(
         transaction = transaction!.copyWith(
-          name: 'Transferido',
+          name: 'Transferred',
           transferido: currentMoney,
           dateTime: formatter.format(dateTime),
           icon: FontAwesomeIcons.arrowRightArrowLeft,
-          bgColor: Colors.blue[100],
-          moneyColor: Colors.blue[900],
         ),
       );
       notifyListeners();
-      sucessSnackBar('Transferido com sucesso', context);
+      sucessSnackBar('Successfully transferred', context);
       Navigator.of(context).pop();
     } else {
-      failedSnackBar('Verifique o valor e tente novamente', context);
+      failedSnackBar('Check the value and try again', context);
     }
   }
 
@@ -46,7 +44,7 @@ class TransactionController extends ChangeNotifier {
     if (resgateController.isNotEmpty) {
       await convertAndResgate(resgateController, context);
     } else {
-      failedSnackBar('Valor resgatado não pode ser vazio!', context);
+      failedSnackBar('Redeemed value cannot be empty!', context);
     }
     notifyListeners();
   }
@@ -63,19 +61,17 @@ class TransactionController extends ChangeNotifier {
       value -= currentMoney;
       listTransaction.add(
         transaction = transaction!.copyWith(
-          name: 'Resgate',
+          name: 'Withdraw',
           resgate: currentMoney,
           dateTime: formatter.format(dateTime),
           icon: FontAwesomeIcons.dollarSign,
-          bgColor: Colors.red[100],
-          moneyColor: Colors.red[900],
         ),
       );
       notifyListeners();
-      sucessSnackBar('Resgatado com sucesso', context);
+      sucessSnackBar('Successfully rescued', context);
       Navigator.of(context).pop();
     } else {
-      failedSnackBar('Verifique o valor e tente novamente', context);
+      failedSnackBar('Check the value and try again', context);
     }
   }
 
@@ -83,7 +79,7 @@ class TransactionController extends ChangeNotifier {
     if (moneyController.isNotEmpty) {
       await convertAndDeposit(moneyController, context);
     } else {
-      failedSnackBar('Valor depositado não pode ser vazio!', context);
+      failedSnackBar('Amount deposited cannot be empty!', context);
     }
 
     notifyListeners();
@@ -101,19 +97,17 @@ class TransactionController extends ChangeNotifier {
       value += currentMoney;
       listTransaction.add(
         transaction = transaction!.copyWith(
-          name: 'Depósito',
+          name: 'Deposit',
           deposito: currentMoney,
           dateTime: formatter.format(dateTime),
           icon: FontAwesomeIcons.moneyBill1Wave,
-          bgColor: Colors.green[100],
-          moneyColor: Colors.green[900],
         ),
       );
       notifyListeners();
-      sucessSnackBar('Depositado com sucesso', context);
+      sucessSnackBar('Successfully deposited', context);
       Navigator.of(context).pop();
     } else {
-      failedSnackBar('Verifique o valor e tente novamente', context);
+      failedSnackBar('Check the value and try again', context);
     }
   }
 }

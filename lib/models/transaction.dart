@@ -9,8 +9,6 @@ class Transaction {
   double? transferido;
   String? dateTime;
   IconData? icon;
-  Color? bgColor;
-  Color? moneyColor;
 
   Transaction({
     this.name,
@@ -19,8 +17,6 @@ class Transaction {
     this.transferido,
     this.dateTime,
     this.icon,
-    this.bgColor,
-    this.moneyColor,
   });
 
   Transaction copyWith({
@@ -40,8 +36,6 @@ class Transaction {
       transferido: transferido ?? this.transferido,
       dateTime: dateTime ?? this.dateTime,
       icon: icon ?? this.icon,
-      bgColor: bgColor ?? this.bgColor,
-      moneyColor: moneyColor ?? this.moneyColor,
     );
   }
 }
