@@ -1,8 +1,8 @@
 // ignore_for_file: unnecessary_null_comparison
 
 import 'package:brasil_fields/brasil_fields.dart';
-import 'package:deposito_saque/models/transaction.dart';
-import 'package:deposito_saque/widgets/app_snack_bar.dart';
+import 'package:deposit_withdraw/models/transaction.dart';
+import 'package:deposit_withdraw/widgets/app_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';

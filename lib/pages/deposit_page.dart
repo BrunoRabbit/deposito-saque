@@ -1,11 +1,10 @@
 // ignore_for_file: unnecessary_null_comparison
 
 import 'package:brasil_fields/brasil_fields.dart';
-import 'package:deposito_saque/widgets/app_custom_text.dart';
-import 'package:deposito_saque/controllers/transaction_controller.dart';
+import 'package:deposit_withdraw/widgets/app_custom_text.dart';
+import 'package:deposit_withdraw/controllers/transaction_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class DepositPage extends StatefulWidget {
@@ -62,26 +61,27 @@ class _DepositPageState extends State<DepositPage> {
               textAlign: TextAlign.center,
               text: TextSpan(
                 text: 'How much ',
-                style: GoogleFonts.roboto(
+                style: TextStyle(
+                  fontFamily: 'Roboto-SemiBold',
                   fontSize: 26,
-                  fontWeight: FontWeight.w700,
                   color: const Color(0xff0000ff).withOpacity(0.75),
+                  // fontWeight: FontWeight.w700,
                 ),
-                children: <TextSpan>[
+                children: const <TextSpan>[
                   TextSpan(
                     text: 'do \nyou want to ',
-                    style: GoogleFonts.roboto(
-                      fontWeight: FontWeight.normal,
+                    style: TextStyle(
+                      fontFamily: 'Roboto-Regular',
                       color: Colors.black,
                     ),
                   ),
-                  const TextSpan(
+                  TextSpan(
                     text: 'deposit',
                   ),
                   TextSpan(
                     text: '?',
-                    style: GoogleFonts.roboto(
-                      fontWeight: FontWeight.normal,
+                    style: TextStyle(
+                      fontFamily: 'Roboto-Regular',
                       color: Colors.black,
                     ),
                   ),
@@ -99,8 +99,9 @@ class _DepositPageState extends State<DepositPage> {
                   keyboardType: TextInputType.number,
                   maxLength: 13,
                   maxLengthEnforcement: MaxLengthEnforcement.enforced,
-                  style: GoogleFonts.roboto(
+                  style: const TextStyle(
                     fontSize: 24,
+                    fontFamily: 'Roboto-Regular',
                   ),
                   decoration: const InputDecoration(
                     border: UnderlineInputBorder(

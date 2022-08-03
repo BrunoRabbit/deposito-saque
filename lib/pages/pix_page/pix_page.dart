@@ -1,7 +1,7 @@
-import 'package:deposito_saque/pages/pix_page/widgets/receive_form.dart';
-import 'package:deposito_saque/views/pix_view/widgets/card_pix.dart';
-import 'package:deposito_saque/routes/app_routes.dart';
-import 'package:deposito_saque/widgets/app_custom_text.dart';
+import 'package:deposit_withdraw/pages/pix_page/widgets/card_pix_widget.dart';
+import 'package:deposit_withdraw/pages/pix_page/widgets/receive_form.dart';
+import 'package:deposit_withdraw/routes/app_routes.dart';
+import 'package:deposit_withdraw/widgets/app_custom_text.dart';
 import 'package:flutter/material.dart';
 
 class PixPage extends StatefulWidget {

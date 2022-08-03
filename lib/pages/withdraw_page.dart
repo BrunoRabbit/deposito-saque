@@ -1,9 +1,8 @@
 import 'package:brasil_fields/brasil_fields.dart';
-import 'package:deposito_saque/controllers/transaction_controller.dart';
-import 'package:deposito_saque/widgets/app_custom_text.dart';
+import 'package:deposit_withdraw/controllers/transaction_controller.dart';
+import 'package:deposit_withdraw/widgets/app_custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class WithdrawPage extends StatefulWidget {
@@ -99,35 +98,35 @@ class _WithdrawPageState extends State<WithdrawPage> {
             textAlign: TextAlign.center,
             text: TextSpan(
               text: 'How much ',
-              style: GoogleFonts.roboto(
-                fontSize: 26,
-                fontWeight: FontWeight.w700,
-                color: const Color(0xff0000ff).withOpacity(0.75),
-              ),
-              children: <TextSpan>[
+              style: TextStyle(
+                  fontFamily: 'Roboto-Regular',
+                  fontSize: 26,
+                  fontWeight: FontWeight.w700,
+                  color: const Color(0xff0000ff).withOpacity(0.75)),
+              children: const <TextSpan>[
                 TextSpan(
                   text: 'do you want\n to ',
-                  style: GoogleFonts.roboto(
+                  style: TextStyle(
                     fontWeight: FontWeight.normal,
                     color: Colors.black,
                   ),
                 ),
-                const TextSpan(
+                TextSpan(
                   text: 'withdraw',
                 ),
                 TextSpan(
                   text: ' from the ',
-                  style: GoogleFonts.roboto(
+                  style: TextStyle(
                     fontWeight: FontWeight.normal,
                     color: Colors.black,
                   ),
                 ),
-                const TextSpan(
+                TextSpan(
                   text: 'bank',
                 ),
                 TextSpan(
                   text: '?',
-                  style: GoogleFonts.roboto(
+                  style: TextStyle(
                     fontWeight: FontWeight.normal,
                     color: Colors.black,
                   ),
@@ -145,7 +144,8 @@ class _WithdrawPageState extends State<WithdrawPage> {
                 keyboardType: TextInputType.number,
                 maxLength: 13,
                 maxLengthEnforcement: MaxLengthEnforcement.enforced,
-                style: GoogleFonts.roboto(
+                style: const TextStyle(
+                  fontFamily: 'Roboto-Regular',
                   fontSize: 24,
                 ),
                 decoration: const InputDecoration(

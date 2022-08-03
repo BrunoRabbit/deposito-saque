@@ -1,5 +1,5 @@
-import 'package:deposito_saque/widgets/app_custom_text.dart';
-import 'package:deposito_saque/routes/app_routes.dart';
+import 'package:deposit_withdraw/widgets/app_custom_text.dart';
+import 'package:deposit_withdraw/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 

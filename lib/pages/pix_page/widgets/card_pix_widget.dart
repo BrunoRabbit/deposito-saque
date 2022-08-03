@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:deposito_saque/widgets/app_custom_text.dart';
+import 'package:deposit_withdraw/widgets/app_custom_text.dart';
 
 class CardPix extends StatelessWidget {
   final String title;

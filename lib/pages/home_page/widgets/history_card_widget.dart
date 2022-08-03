@@ -1,8 +1,8 @@
 import 'package:brasil_fields/brasil_fields.dart';
-import 'package:deposito_saque/widgets/app_custom_text.dart';
+import 'package:deposit_withdraw/widgets/app_custom_text.dart';
 import 'package:flutter/material.dart';
 
-import 'package:deposito_saque/models/transaction.dart';
+import 'package:deposit_withdraw/models/transaction.dart';
 
 class HistoryCard extends StatelessWidget {
   final Transaction transaction;
@@ -59,7 +59,6 @@ class HistoryCard extends StatelessWidget {
                     AppCustomText(
                       label: transaction.dateTime!,
                       size: 16,
-                      fontWeight: FontWeight.w400,
                       color: Colors.black.withOpacity(0.65),
                     ),
                   ],

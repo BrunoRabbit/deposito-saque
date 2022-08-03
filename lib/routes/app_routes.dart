@@ -1,8 +1,8 @@
-import 'package:deposito_saque/pages/camera_page/camera_page.dart';
-import 'package:deposito_saque/pages/deposit_page.dart';
-import 'package:deposito_saque/pages/home_page/home_page.dart';
-import 'package:deposito_saque/pages/pix_page/pix_page.dart';
-import 'package:deposito_saque/pages/withdraw_page.dart';
+import 'package:deposit_withdraw/pages/camera_page/camera_page.dart';
+import 'package:deposit_withdraw/pages/deposit_page.dart';
+import 'package:deposit_withdraw/pages/home_page/home_page.dart';
+import 'package:deposit_withdraw/pages/pix_page/pix_page.dart';
+import 'package:deposit_withdraw/pages/withdraw_page.dart';
 import 'package:flutter/material.dart';
 
 class AppRoutes {

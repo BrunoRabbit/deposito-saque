@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class AppCustomText extends StatelessWidget {
   final double? size;
   final String label;
   final FontWeight? fontWeight;
+  final String? fontFamily;
   final Color? color;
 
   const AppCustomText({
@@ -13,6 +13,7 @@ class AppCustomText extends StatelessWidget {
     required this.label,
     this.fontWeight,
     this.color,
+    this.fontFamily,
   }) : super(key: key);
 
   @override
@@ -21,9 +22,10 @@ class AppCustomText extends StatelessWidget {
       label,
       textAlign: TextAlign.center,
       overflow: TextOverflow.ellipsis,
-      style: GoogleFonts.roboto(
+      style: TextStyle(
+        fontFamily: fontFamily ?? 'Roboto-Regular',
         fontSize: size ?? 18,
-        fontWeight: fontWeight ?? FontWeight.w500,
+        fontWeight: fontWeight,
         color: color,
       ),
     );

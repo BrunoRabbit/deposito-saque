@@ -1,4 +1,4 @@
-import 'package:deposito_saque/pages/camera_page/widgets/qr_overlay_widget.dart';
+import 'package:deposit_withdraw/pages/camera_page/widgets/qr_overlay_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 

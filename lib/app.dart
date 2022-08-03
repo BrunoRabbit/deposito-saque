@@ -1,8 +1,8 @@
-import 'package:deposito_saque/controllers/transaction_controller.dart';
-import 'package:deposito_saque/pages/home_page/home_page.dart';
-import 'package:deposito_saque/routes/app_routes.dart';
-import 'package:deposito_saque/themes/colors_themes.dart';
-import 'package:deposito_saque/widgets/app_snack_bar.dart';
+import 'package:deposit_withdraw/controllers/transaction_controller.dart';
+import 'package:deposit_withdraw/pages/home_page/home_page.dart';
+import 'package:deposit_withdraw/routes/app_routes.dart';
+import 'package:deposit_withdraw/themes/colors_themes.dart';
+import 'package:deposit_withdraw/widgets/app_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

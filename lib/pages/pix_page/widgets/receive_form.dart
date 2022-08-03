@@ -1,6 +1,6 @@
 import 'package:brasil_fields/brasil_fields.dart';
-import 'package:deposito_saque/controllers/transaction_controller.dart';
-import 'package:deposito_saque/widgets/app_custom_text.dart';
+import 'package:deposit_withdraw/controllers/transaction_controller.dart';
+import 'package:deposit_withdraw/widgets/app_custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -50,7 +50,6 @@ class _ReceiveFormState extends State<ReceiveForm> {
             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 6),
             child: AppCustomText(
               label: 'E-mail',
-              fontWeight: FontWeight.normal,
             ),
           ),
           Padding(
@@ -75,7 +74,6 @@ class _ReceiveFormState extends State<ReceiveForm> {
             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 6),
             child: AppCustomText(
               label: 'Money to receive',
-              fontWeight: FontWeight.normal,
             ),
           ),
           Padding(
