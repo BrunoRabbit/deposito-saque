@@ -17,10 +17,8 @@ class ReceiveForm extends StatefulWidget {
 }
 
 class _ReceiveFormState extends State<ReceiveForm> {
-  late TextEditingController _emailController;
   late TextEditingController _moneyTransferController;
   late CurrentBalanceBloc currentBalanceBloc;
-  RegExp regexEmail = RegExp(r"^[a-zA-Z0-9]+@[a-zA-Z0-9.-]+$");
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final DateFormat formatter = DateFormat('EEEE, HH:mm aaa, d/MMM yy');
 
@@ -34,14 +32,12 @@ class _ReceiveFormState extends State<ReceiveForm> {
   void initState() {
     _moneyTransferController =
         TextEditingController(text: UtilBrasilFields.obterReal(0, moeda: true));
-    _emailController = TextEditingController();
 
     super.initState();
   }
 
   @override
   void dispose() {
-    _emailController.dispose();
     _moneyTransferController.dispose();
     super.dispose();
   }
@@ -53,27 +49,6 @@ class _ReceiveFormState extends State<ReceiveForm> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-            child: AppCustomText(
-              label: 'E-mail',
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-            child: TextFormField(
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-              ),
-              controller: _emailController,
-              validator: (text) {
-                if (regexEmail.hasMatch(text!) && text.isNotEmpty) {
-                  return null;
-                }
-                return 'E-mail cannot be empty!';
-              },
-            ),
-          ),
           const SizedBox(
             height: 10,
           ),

@@ -50,7 +50,6 @@ class _ApplicationState extends State<Application> {
         scaffoldMessengerKey: scaffoldKey,
         debugShowCheckedModeBanner: false,
         routes: AppRoutes.path,
-        // themeMode: themeProvider.themeMode,
         theme: ColorsThemes.lightTheme,
         // darkTheme: MyTheme.darkTheme,
         home: const HomePage(),

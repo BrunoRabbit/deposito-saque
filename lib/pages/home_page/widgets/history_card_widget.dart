@@ -80,14 +80,14 @@ class HistoryCard extends StatelessWidget {
         cardBackgroundColor: Colors.blue[100]!,
         currentBalanceColor: Colors.blue[900]!,
         bannerBackgroundColor: Colors.blue,
-        icon: FontAwesomeIcons.moneyBill1Wave,
+        icon: FontAwesomeIcons.arrowRightArrowLeft,
       );
     } else {
       return TransactionDecoration(
         cardBackgroundColor: Colors.green[100]!,
         currentBalanceColor: Colors.green[900]!,
         bannerBackgroundColor: const Color.fromARGB(255, 4, 179, 77),
-        icon: FontAwesomeIcons.arrowRightArrowLeft,
+        icon: FontAwesomeIcons.moneyBill1Wave,
       );
     }
   }

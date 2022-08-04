@@ -68,18 +68,9 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(
                 height: 25,
               ),
-              Row(
-                children: [
-                  const AppCustomText(
-                    label: 'History transaction',
-                    fontFamily: 'Roboto-Medium',
-                  ),
-                  const Spacer(),
-                  Icon(
-                    Icons.arrow_forward_outlined,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                ],
+              const AppCustomText(
+                label: 'History transaction',
+                fontFamily: 'Roboto-Medium',
               ),
               const SizedBox(
                 height: 10,
