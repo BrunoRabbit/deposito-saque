@@ -196,15 +196,19 @@ class _WithdrawPageState extends State<WithdrawPage> {
                     ),
                   ),
                   onPressed: () {
-                    final _currentBalance =
-                        UtilBrasilFields.converterMoedaParaDouble(
-                      _withdrawController.text,
-                    );
-                    if (_withdrawController.text.isNotEmpty &&
-                        _currentBalance <= state.currentBalance) {
-                      _onWithdraw(_currentBalance);
+                    if (_withdrawController.text.isNotEmpty) {
+                      final _currentBalance =
+                          UtilBrasilFields.converterMoedaParaDouble(
+                        _withdrawController.text,
+                      );
+                      if (_withdrawController.text.isNotEmpty &&
+                          _currentBalance <= state.currentBalance) {
+                        _onWithdraw(_currentBalance);
+                      } else {
+                        failedSnackBar('Something went wrong', context);
+                      }
                     } else {
-                      failedSnackBar('Something went wrong', context);
+                      failedSnackBar('The field cannot be empty', context);
                     }
                   },
                 ),

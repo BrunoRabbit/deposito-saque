@@ -1,6 +1,6 @@
+import 'package:deposit_withdraw/pages/form_pix_pay_page/form_pix_pay_page.dart';
 import 'package:deposit_withdraw/pages/home_page/blocs/current_balance/current_balance_bloc.dart';
 import 'package:deposit_withdraw/pages/home_page/blocs/history/history_bloc.dart';
-import 'package:deposit_withdraw/pages/home_page/home_page.dart';
 import 'package:deposit_withdraw/pages/pix_page/cubit/open_card_cubit.dart';
 import 'package:deposit_withdraw/routes/app_routes.dart';
 import 'package:deposit_withdraw/themes/colors_themes.dart';
@@ -53,7 +53,7 @@ class _ApplicationState extends State<Application> {
         // themeMode: themeProvider.themeMode,
         theme: ColorsThemes.lightTheme,
         // darkTheme: MyTheme.darkTheme,
-        home: const HomePage(),
+        home: const FormPixPayPage(), // HOMEPAGE
       ),
     );
   }

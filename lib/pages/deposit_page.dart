@@ -155,16 +155,20 @@ class _DepositPageState extends State<DepositPage> {
                       ),
                     ),
                     onPressed: () {
-                      final _currentBalance =
-                          UtilBrasilFields.converterMoedaParaDouble(
-                        _depositController.text,
-                      );
-                      if (_depositController.text.isNotEmpty &&
-                          _currentBalance >= 3 &&
-                          _currentBalance <= 250000) {
-                        _onDeposit(_currentBalance);
+                      if (_depositController.text.isNotEmpty) {
+                        final _currentBalance =
+                            UtilBrasilFields.converterMoedaParaDouble(
+                          _depositController.text,
+                        );
+                        if (_depositController.text.isNotEmpty &&
+                            _currentBalance >= 3 &&
+                            _currentBalance <= 250000) {
+                          _onDeposit(_currentBalance);
+                        } else {
+                          failedSnackBar('Something went wrong', context);
+                        }
                       } else {
-                        failedSnackBar('Something went wrong', context);
+                        failedSnackBar('The field cannot be empty', context);
                       }
                     },
                   ),

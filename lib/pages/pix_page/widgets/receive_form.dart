@@ -32,11 +32,8 @@ class _ReceiveFormState extends State<ReceiveForm> {
 
   @override
   void initState() {
-    _moneyTransferController = TextEditingController(
-        text: UtilBrasilFields.obterReal(
-      0,
-      moeda: true,
-    ));
+    _moneyTransferController =
+        TextEditingController(text: UtilBrasilFields.obterReal(0, moeda: true));
     _emailController = TextEditingController();
 
     super.initState();
@@ -70,10 +67,10 @@ class _ReceiveFormState extends State<ReceiveForm> {
               ),
               controller: _emailController,
               validator: (text) {
-                if (regexEmail.hasMatch(text!) && text.isEmpty) {
-                  return 'E-mail cannot be empty!';
+                if (regexEmail.hasMatch(text!) && text.isNotEmpty) {
+                  return null;
                 }
-                return null;
+                return 'E-mail cannot be empty!';
               },
             ),
           ),
@@ -99,7 +96,7 @@ class _ReceiveFormState extends State<ReceiveForm> {
               controller: _moneyTransferController,
               validator: (text) {
                 if (text!.isEmpty) {
-                  return 'Money cannot be empty';
+                  return 'This field cannot be empty';
                 }
                 return null;
               },
