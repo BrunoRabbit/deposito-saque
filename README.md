@@ -1,16 +1,12 @@
 # deposito_saque
 
-A new Flutter project.
+Projeto feito com :heart: para concorrer a uma vaga para a empresa PurpleCats
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Recomendação
+  O app utiliza do recurso de **camera com qr code**, então é recomendado que utilize o **APK** para testa-lo. Para instalar no seu smartphone **android**, apenas faça o download do APK, colocando o codigo abaixo no terminal e estando dentro do projeto. 
+  
+    flutter build apk. 
+    
+ Deixarei no repositório um **QR CODE** pronto para facilitar o scan
+    
+  Depois vá para o diretório:`build\app\outputs\flutter-apk\` e selecione e instale o arquivo `app.apk`
