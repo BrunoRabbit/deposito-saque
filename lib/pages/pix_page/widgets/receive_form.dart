@@ -1,9 +1,13 @@
 import 'package:brasil_fields/brasil_fields.dart';
-import 'package:deposit_withdraw/controllers/transaction_controller.dart';
+import 'package:deposit_withdraw/models/transaction.dart';
+import 'package:deposit_withdraw/pages/home_page/blocs/current_balance/current_balance_bloc.dart';
+import 'package:deposit_withdraw/pages/home_page/blocs/history/history_bloc.dart';
 import 'package:deposit_withdraw/widgets/app_custom_text.dart';
+import 'package:deposit_withdraw/widgets/app_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 class ReceiveForm extends StatefulWidget {
   const ReceiveForm({Key? key}) : super(key: key);
@@ -15,9 +19,16 @@ class ReceiveForm extends StatefulWidget {
 class _ReceiveFormState extends State<ReceiveForm> {
   late TextEditingController _emailController;
   late TextEditingController _moneyTransferController;
-  late TransactionController transactionController;
+  late CurrentBalanceBloc currentBalanceBloc;
   RegExp regexEmail = RegExp(r"^[a-zA-Z0-9]+@[a-zA-Z0-9.-]+$");
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final DateFormat formatter = DateFormat('EEEE, HH:mm aaa, d/MMM yy');
+
+  @override
+  void didChangeDependencies() {
+    currentBalanceBloc = BlocProvider.of<CurrentBalanceBloc>(context);
+    super.didChangeDependencies();
+  }
 
   @override
   void initState() {
@@ -27,8 +38,7 @@ class _ReceiveFormState extends State<ReceiveForm> {
       moeda: true,
     ));
     _emailController = TextEditingController();
-    transactionController =
-        Provider.of<TransactionController>(context, listen: false);
+
     super.initState();
   }
 
@@ -116,10 +126,17 @@ class _ReceiveFormState extends State<ReceiveForm> {
               ),
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
-                  transactionController.convertAndTransfer(
+                  final _currentBalance =
+                      UtilBrasilFields.converterMoedaParaDouble(
                     _moneyTransferController.text,
-                    context,
                   );
+                  if (_moneyTransferController.text.isNotEmpty &&
+                      _currentBalance > 0 &&
+                      _currentBalance <= 250000) {
+                    _onTransfer(_currentBalance);
+                  } else {
+                    failedSnackBar('Something went wrong', context);
+                  }
                 }
               },
             ),
@@ -127,5 +144,22 @@ class _ReceiveFormState extends State<ReceiveForm> {
         ],
       ),
     );
+  }
+
+  _onTransfer(double currentBalance) {
+    currentBalanceBloc.add(
+      ChangeBalanceValue(currentBalance: currentBalance),
+    );
+    context.read<HistoryBloc>().add(
+          AddTransactionToHistory(
+            transaction: Transaction(
+              type: TransactionType.Transferred,
+              dateTime: formatter.format(DateTime.now()),
+              total: currentBalance,
+            ),
+          ),
+        );
+    sucessSnackBar('Successfully transferred', context);
+    Navigator.of(context).pop();
   }
 }

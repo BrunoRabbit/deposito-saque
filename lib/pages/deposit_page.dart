@@ -1,11 +1,15 @@
 // ignore_for_file: unnecessary_null_comparison
 
 import 'package:brasil_fields/brasil_fields.dart';
+import 'package:deposit_withdraw/models/transaction.dart';
+import 'package:deposit_withdraw/pages/home_page/blocs/current_balance/current_balance_bloc.dart';
+import 'package:deposit_withdraw/pages/home_page/blocs/history/history_bloc.dart';
 import 'package:deposit_withdraw/widgets/app_custom_text.dart';
-import 'package:deposit_withdraw/controllers/transaction_controller.dart';
+import 'package:deposit_withdraw/widgets/app_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 class DepositPage extends StatefulWidget {
   const DepositPage({Key? key}) : super(key: key);
@@ -15,26 +19,30 @@ class DepositPage extends StatefulWidget {
 }
 
 class _DepositPageState extends State<DepositPage> {
-  late final TextEditingController _moneyController;
-  late TransactionController transactionController;
+  late CurrentBalanceBloc currentBalanceBloc;
+  late final TextEditingController _depositController;
+  final DateFormat formatter = DateFormat('EEEE, HH:mm aaa, d/MMM yy');
+
+  @override
+  void didChangeDependencies() {
+    currentBalanceBloc = BlocProvider.of<CurrentBalanceBloc>(context);
+    super.didChangeDependencies();
+  }
 
   @override
   void initState() {
-    _moneyController = TextEditingController(
+    _depositController = TextEditingController(
         text: UtilBrasilFields.obterReal(
       0,
       moeda: true,
     ));
     super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
-      transactionController =
-          Provider.of<TransactionController>(context, listen: false);
-    });
+    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {});
   }
 
   @override
   void dispose() {
-    _moneyController.dispose();
+    _depositController.dispose();
     super.dispose();
   }
 
@@ -95,7 +103,7 @@ class _DepositPageState extends State<DepositPage> {
                 child: TextField(
                   autofocus: true,
                   textAlign: TextAlign.center,
-                  controller: _moneyController,
+                  controller: _depositController,
                   keyboardType: TextInputType.number,
                   maxLength: 13,
                   maxLengthEnforcement: MaxLengthEnforcement.enforced,
@@ -127,33 +135,62 @@ class _DepositPageState extends State<DepositPage> {
             const SizedBox(
               height: 25,
             ),
-            SizedBox(
-              height: 55,
-              width: double.infinity,
-              child: ElevatedButton(
-                child: const AppCustomText(
-                  label: 'Deposit',
-                  color: Colors.white,
-                  size: 18,
-                ),
-                style: ElevatedButton.styleFrom(
-                  elevation: 0,
-                  primary: const Color(0xff282828),
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.zero,
+            BlocBuilder<CurrentBalanceBloc, CurrentBalanceState>(
+              bloc: currentBalanceBloc,
+              builder: (context, state) {
+                return SizedBox(
+                  height: 55,
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    child: const AppCustomText(
+                      label: 'Deposit',
+                      color: Colors.white,
+                      size: 18,
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      elevation: 0,
+                      primary: const Color(0xff282828),
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.zero,
+                      ),
+                    ),
+                    onPressed: () {
+                      final _currentBalance =
+                          UtilBrasilFields.converterMoedaParaDouble(
+                        _depositController.text,
+                      );
+                      if (_depositController.text.isNotEmpty &&
+                          _currentBalance >= 3 &&
+                          _currentBalance <= 250000) {
+                        _onDeposit(_currentBalance);
+                      } else {
+                        failedSnackBar('Something went wrong', context);
+                      }
+                    },
                   ),
-                ),
-                onPressed: () {
-                  transactionController.verifyValueDeposit(
-                    _moneyController.text,
-                    context,
-                  );
-                },
-              ),
+                );
+              },
             ),
           ],
         ),
       ),
     );
+  }
+
+  _onDeposit(double currentBalance) {
+    currentBalanceBloc.add(
+      ChangeBalanceValue(currentBalance: currentBalance),
+    );
+    context.read<HistoryBloc>().add(
+          AddTransactionToHistory(
+            transaction: Transaction(
+              type: TransactionType.Deposit,
+              dateTime: formatter.format(DateTime.now()),
+              total: currentBalance,
+            ),
+          ),
+        );
+    sucessSnackBar('Successfully deposited', context);
+    Navigator.of(context).pop();
   }
 }

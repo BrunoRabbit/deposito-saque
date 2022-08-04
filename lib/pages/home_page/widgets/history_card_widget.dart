@@ -1,8 +1,9 @@
 import 'package:brasil_fields/brasil_fields.dart';
+import 'package:deposit_withdraw/models/transaction.dart';
+import 'package:deposit_withdraw/models/transaction_decoration.dart';
 import 'package:deposit_withdraw/widgets/app_custom_text.dart';
 import 'package:flutter/material.dart';
-
-import 'package:deposit_withdraw/models/transaction.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HistoryCard extends StatelessWidget {
   final Transaction transaction;
@@ -17,16 +18,16 @@ class HistoryCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 2),
       child: Card(
-        color: _getCardBackground(),
+        color: getDecoration().cardBackgroundColor,
         child: Padding(
           padding: const EdgeInsets.all(12.0),
           child: Row(
             children: [
               CircleAvatar(
                 radius: 20,
-                backgroundColor: _getBannerBackground(),
+                backgroundColor: getDecoration().bannerBackgroundColor,
                 child: Icon(
-                  transaction.icon,
+                  getDecoration().icon,
                   size: 20,
                   color: Colors.white,
                 ),
@@ -43,16 +44,11 @@ class HistoryCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         AppCustomText(
-                          label: transaction.name!,
+                          label: transaction.type.name,
                         ),
                         AppCustomText(
-                          label: transaction.withdraw != null
-                              ? UtilBrasilFields.obterReal(
-                                  transaction.withdraw!)
-                              : UtilBrasilFields.obterReal(
-                                  transaction.deposit ??
-                                      transaction.transferred!),
-                          color: _getMoneyColor(),
+                          label: getTransactionValue(),
+                          color: getDecoration().currentBalanceColor,
                         ),
                       ],
                     ),
@@ -71,33 +67,38 @@ class HistoryCard extends StatelessWidget {
     );
   }
 
-  Color _getCardBackground() {
-    if (transaction.withdraw != null) {
-      return Colors.red[100]!;
-    } else if (transaction.transferred != null) {
-      return Colors.blue[100]!;
+  TransactionDecoration getDecoration() {
+    if (transaction.type == TransactionType.Withdraw) {
+      return TransactionDecoration(
+        cardBackgroundColor: Colors.red[100]!,
+        currentBalanceColor: Colors.red[900]!,
+        bannerBackgroundColor: Colors.redAccent,
+        icon: FontAwesomeIcons.dollarSign,
+      );
+    } else if (transaction.type == TransactionType.Transferred) {
+      return TransactionDecoration(
+        cardBackgroundColor: Colors.blue[100]!,
+        currentBalanceColor: Colors.blue[900]!,
+        bannerBackgroundColor: Colors.blue,
+        icon: FontAwesomeIcons.moneyBill1Wave,
+      );
     } else {
-      return Colors.green[100]!;
+      return TransactionDecoration(
+        cardBackgroundColor: Colors.green[100]!,
+        currentBalanceColor: Colors.green[900]!,
+        bannerBackgroundColor: const Color.fromARGB(255, 4, 179, 77),
+        icon: FontAwesomeIcons.arrowRightArrowLeft,
+      );
     }
   }
 
-  Color _getMoneyColor() {
-    if (transaction.withdraw != null) {
-      return Colors.red[900]!;
-    } else if (transaction.transferred != null) {
-      return Colors.blue[900]!;
+  String getTransactionValue() {
+    if (transaction.type == TransactionType.Deposit) {
+      return UtilBrasilFields.obterReal(transaction.total!);
+    } else if (transaction.type == TransactionType.Transferred) {
+      return UtilBrasilFields.obterReal(transaction.total!);
     } else {
-      return Colors.green[900]!;
-    }
-  }
-
-  Color _getBannerBackground() {
-    if (transaction.withdraw != null) {
-      return Colors.redAccent;
-    } else if (transaction.transferred != null) {
-      return Colors.blue;
-    } else {
-      return const Color.fromARGB(255, 4, 179, 77);
+      return UtilBrasilFields.obterReal(transaction.total!);
     }
   }
 }

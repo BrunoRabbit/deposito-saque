@@ -39,7 +39,6 @@ dependencies:
   font_awesome_flutter: ^10.1.0
   mobile_scanner: ^1.1.2
   flutter_bloc: ^8.0.1
-  equatable: ^2.0.3
   
 dev_dependencies:
   flutter_test:
@@ -83,25 +82,19 @@ flutter:
   fonts:
     - family: Roboto-Bold
       fonts:
-        - asset: assets/fonts/RobotoMono-Bold.ttf
-    - family: Roboto-SemiBold
-      fonts:
-        - asset: assets/fonts/RobotoMono-SemiBold.ttf
+        - asset: assets/fonts/Roboto-Bold.ttf
     - family: Roboto-Regular
       fonts:
-        - asset: assets/fonts/RobotoMono-Regular.ttf
+        - asset: assets/fonts/Roboto-Regular.ttf
     - family: Roboto-Medium
       fonts:
-        - asset: assets/fonts/RobotoMono-Medium.ttf
+        - asset: assets/fonts/Roboto-Medium.ttf
     - family: Roboto-Thin
       fonts:
-        - asset: assets/fonts/RobotoMono-Thin.ttf
+        - asset: assets/fonts/Roboto-Thin.ttf
     - family: Roboto-Light
       fonts:
-        - asset: assets/fonts/RobotoMono-Light.ttf
-    - family: Roboto-ExtraLight
-      fonts:
-        - asset: assets/fonts/RobotoMono-ExtraLight.ttf
+        - asset: assets/fonts/Roboto-Light.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

@@ -1,11 +1,12 @@
 import 'package:brasil_fields/brasil_fields.dart';
+import 'package:deposit_withdraw/pages/home_page/blocs/current_balance/current_balance_bloc.dart';
+import 'package:deposit_withdraw/pages/home_page/blocs/history/history_bloc.dart';
 import 'package:deposit_withdraw/pages/home_page/widgets/history_card_widget.dart';
-import 'package:deposit_withdraw/controllers/transaction_controller.dart';
 import 'package:deposit_withdraw/models/transaction.dart';
 import 'package:deposit_withdraw/widgets/app_custom_text.dart';
 import 'package:deposit_withdraw/pages/home_page/widgets/area_button_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -15,12 +16,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  late TransactionController transactionController;
+  late HistoryBloc historyBloc;
+  late Transaction transaction;
+  late CurrentBalanceBloc currentBalanceBloc;
 
   @override
   void didChangeDependencies() {
-    transactionController =
-        Provider.of<TransactionController>(context, listen: true);
+    currentBalanceBloc = BlocProvider.of<CurrentBalanceBloc>(context);
+    historyBloc = BlocProvider.of<HistoryBloc>(context);
     super.didChangeDependencies();
   }
 
@@ -39,9 +42,16 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(
                 height: 8,
               ),
-              AppCustomText(
-                label: UtilBrasilFields.obterReal(transactionController.value),
-                size: 32,
+              BlocBuilder<CurrentBalanceBloc, CurrentBalanceState>(
+                bloc: currentBalanceBloc,
+                builder: (context, state) {
+                  return AppCustomText(
+                    label: UtilBrasilFields.obterReal(
+                      state.currentBalance,
+                    ),
+                    size: 32,
+                  );
+                },
               ),
               const SizedBox(
                 height: 8,
@@ -74,45 +84,51 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(
                 height: 10,
               ),
-              transactionController.listTransaction.isEmpty
-                  ? const Spacer()
-                  : Container(),
-              transactionController.listTransaction.isEmpty
-                  ? Center(
+              BlocBuilder<HistoryBloc, HistoryState>(
+                bloc: historyBloc,
+                builder: (context, state) {
+                  if (state.historyTransaction.isEmpty) {
+                    return Flexible(
                       child: Column(
                         children: [
-                          const AppCustomText(
-                            label: 'No transactions found!',
-                            size: 20,
+                          const Spacer(),
+                          Center(
+                            child: Column(
+                              children: [
+                                const AppCustomText(
+                                  label: 'No transactions found!',
+                                  size: 20,
+                                ),
+                                Icon(
+                                  Icons.search_off,
+                                  size: 40,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                              ],
+                            ),
                           ),
-                          Icon(
-                            Icons.search_off,
-                            size: 40,
-                            color: Theme.of(context).primaryColor,
-                          ),
+                          const Spacer(),
                         ],
                       ),
-                    )
-                  : Flexible(
-                      child: ListView.builder(
-                        itemCount: transactionController.listTransaction.length,
-                        itemBuilder: (context, index) {
-                          int reverseIndex =
-                              transactionController.listTransaction.length -
-                                  1 -
-                                  index;
-                          Transaction transaction = transactionController
-                              .listTransaction[reverseIndex];
+                    );
+                  }
+                  return Flexible(
+                    child: ListView.builder(
+                      itemCount: state.historyTransaction.length,
+                      itemBuilder: (context, index) {
+                        int reverseIndex =
+                            state.historyTransaction.length - 1 - index;
+                        Transaction transaction =
+                            state.historyTransaction[reverseIndex];
 
-                          return HistoryCard(
-                            transaction: transaction,
-                          );
-                        },
-                      ),
+                        return HistoryCard(
+                          transaction: transaction,
+                        );
+                      },
                     ),
-              transactionController.listTransaction.isEmpty
-                  ? const Spacer()
-                  : Container(),
+                  );
+                },
+              ),
             ],
           ),
         ),

@@ -1,41 +1,27 @@
 // ignore_for_file: constant_identifier_names
 
-import 'package:flutter/material.dart';
+part 'transaction_type.dart';
 
 class Transaction {
-  String? name;
-  double? withdraw;
-  double? deposit;
-  double? transferred;
-  String? dateTime;
-  IconData? icon;
+  final TransactionType type;
+  final double? total;
+  final String? dateTime;
 
   Transaction({
-    this.name,
-    this.withdraw,
-    this.deposit,
-    this.transferred,
+    required this.type,
+    this.total,
     this.dateTime,
-    this.icon,
   });
 
   Transaction copyWith({
-    String? name,
-    double? withdraw,
-    double? deposit,
-    double? transferred,
+    TransactionType? type,
+    double? total,
     String? dateTime,
-    IconData? icon,
-    Color? bgColor,
-    Color? moneyColor,
   }) {
     return Transaction(
-      name: name ?? this.name,
-      withdraw: withdraw ?? this.withdraw,
-      deposit: deposit ?? this.deposit,
-      transferred: transferred ?? this.transferred,
+      type: type ?? this.type,
+      total: total ?? this.total,
       dateTime: dateTime ?? this.dateTime,
-      icon: icon ?? this.icon,
     );
   }
 }

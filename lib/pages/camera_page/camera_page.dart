@@ -1,4 +1,6 @@
 import 'package:deposit_withdraw/pages/camera_page/widgets/qr_overlay_widget.dart';
+import 'package:deposit_withdraw/routes/app_routes.dart';
+import 'package:deposit_withdraw/widgets/app_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
@@ -30,6 +32,9 @@ class _CameraPageState extends State<CameraPage> {
             controller: cameraController,
             onDetect: ((barcode, args) {
               debugPrint('Bar code found!' + barcode.rawValue!);
+              Navigator.of(context).pushNamed(RoutesPath.kFormPixPay);
+              sucessSnackBar('Successfully scanned', context);
+              cameraController.stop();
             }),
           ),
           QrOverlay(
